@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入520领取对象</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ff6b8b;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .input-box {
+            width: 100%;
+            height: 50px;
+            border: 2px solid #ffb6c1;
+            border-radius: 25px;
+            padding: 0 20px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-box:focus {
+            border-color: #ff6b8b;
+            box-shadow: 0 0 8px rgba(255,107,139,0.3);
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(90deg, #ff6b8b, #ff85a2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,139,0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #ff6b8b;
+        }
+
+        .result-img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💌 输入520领取对象 💌</h1>
+        <input type="text" class="input-box" placeholder="在这里输入内容...">
+        <button class="submit-btn">领取对象！</button>
+    </div>
+
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img src="target.jpg" alt="对象" class="result-img">
+        </div>
+    </div>
+
+    <script>
+        const inputBox = document.querySelector('.input-box');
+        const submitBtn = document.querySelector('.submit-btn');
+        const modal = document.getElementById('resultModal');
+        const closeBtn = document.querySelector('.close-btn');
+
+        submitBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        inputBox.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                modal.style.display = 'flex';
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
